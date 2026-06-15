@@ -90,6 +90,8 @@ class RulesEngine:
         if self._publisher:
             try:
                 if alert.sensor_type == "leak":
+                    # Publishes to home/alerts/leak/{sensor_id} — BerkeleyAlarms
+                    # subscribes and handles Alexa TTS + repeat scheduling.
                     self._publisher.alert_leak(alert)
                 elif alert.sensor_type == "power":
                     self._publisher.alert_power(alert)
@@ -98,10 +100,8 @@ class RulesEngine:
                         f"home/alerts/{alert.sensor_type}/{alert.sensor_id}",
                         alert,
                     )
-                # Alexa announcement for CRITICAL alerts
-                if alert.severity == "CRITICAL":
-                    self._publisher.command_alexa_say(
-                        f"CRITICAL: {alert.message}"
-                    )
+                # NOTE: Alexa announcements are now handled centrally by
+                # BerkeleyAlarms (subscribes home/alerts/#). Do NOT call
+                # command_alexa_say here — it would cause double-announcements.
             except Exception:
                 log.exception("rules_engine.publish_error")

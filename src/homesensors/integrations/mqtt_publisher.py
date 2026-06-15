@@ -72,6 +72,14 @@ class MQTTPublisher:
         self._client.publish(topic, json.dumps(payload), qos=1, retain=False)
         log.info("mqtt_publisher.power_alert", topic=topic, message=alert.message)
 
+    def alert_breaker(self, alert: Any) -> None:
+        """Publish a breaker-trip alert — QoS 1, retained so BerkeleyAlarms sees it on connect."""
+        payload = self._alert_to_payload(alert)
+        topic = f"home/alerts/breaker/{alert.sensor_id}"
+        # Retained so the alarm service catches it even if it restarts shortly after
+        self._client.publish(topic, json.dumps(payload), qos=1, retain=True)
+        log.warning("mqtt_publisher.breaker_trip", topic=topic, circuit=alert.sensor_id)
+
     # ── external commands ───────────────────────────────────────────────
 
     def command_alexa_say(self, text: str) -> None:

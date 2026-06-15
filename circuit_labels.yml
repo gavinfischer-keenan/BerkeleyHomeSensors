@@ -1,0 +1,121 @@
+# Circuit Label Registry
+# ──────────────────────────────────────────────────────────────────────────────
+# Maps hardware circuit_id (as reported by the power monitoring sensor) to
+# human-readable metadata used in alarm announcements and the UI.
+#
+# circuit_id    Must match exactly what the power sensor publishes in
+#               reading.circuit_id (typically the device/sensor ID string).
+# name          Short human-readable circuit name.
+#               Used in TTS: "Alexa Announce {name} breaker has been tripped"
+#               and in the alarm dashboard.
+# location      Room or area. Used for grouping in the UI.
+# panel         Electrical panel this circuit belongs to.
+#               "main" for the main panel, "sub" for sub-panels.
+# amps          Circuit breaker amperage (for overcurrent threshold context).
+# ──────────────────────────────────────────────────────────────────────────────
+
+circuits:
+
+  # ── Main Panel ────────────────────────────────────────────────────────────
+
+  kitchen_north:
+    name: "Kitchen North Outlets"
+    location: "Kitchen"
+    panel: "main"
+    amps: 20
+
+  kitchen_south:
+    name: "Kitchen South Outlets"
+    location: "Kitchen"
+    panel: "main"
+    amps: 20
+
+  kitchen_dishwasher:
+    name: "Dishwasher"
+    location: "Kitchen"
+    panel: "main"
+    amps: 20
+
+  kitchen_refrigerator:
+    name: "Refrigerator"
+    location: "Kitchen"
+    panel: "main"
+    amps: 20
+
+  master_bedroom:
+    name: "Master Bedroom"
+    location: "Master Bedroom"
+    panel: "main"
+    amps: 15
+
+  master_bath:
+    name: "Master Bathroom"
+    location: "Master Bathroom"
+    panel: "main"
+    amps: 20
+
+  living_room:
+    name: "Living Room"
+    location: "Living Room"
+    panel: "main"
+    amps: 15
+
+  dining_room:
+    name: "Dining Room"
+    location: "Dining Room"
+    panel: "main"
+    amps: 15
+
+  garage_general:
+    name: "Garage General"
+    location: "Garage"
+    panel: "main"
+    amps: 20
+
+  garage_ev_charger:
+    name: "EV Charger"
+    location: "Garage"
+    panel: "main"
+    amps: 50
+
+  hvac_main:
+    name: "HVAC Main"
+    location: "Mechanical Room"
+    panel: "main"
+    amps: 40
+
+  dryer:
+    name: "Dryer"
+    location: "Laundry Room"
+    panel: "main"
+    amps: 30
+
+  washer:
+    name: "Washer"
+    location: "Laundry Room"
+    panel: "main"
+    amps: 20
+
+  office:
+    name: "Home Office"
+    location: "Office"
+    panel: "main"
+    amps: 20
+
+  outdoor_front:
+    name: "Outdoor Front"
+    location: "Exterior — Front"
+    panel: "main"
+    amps: 20
+
+  outdoor_rear:
+    name: "Outdoor Rear"
+    location: "Exterior — Rear"
+    panel: "main"
+    amps: 20
+
+  pool_pump:
+    name: "Pool Pump"
+    location: "Exterior — Pool"
+    panel: "main"
+    amps: 20

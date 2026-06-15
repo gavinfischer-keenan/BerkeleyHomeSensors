@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -55,6 +57,12 @@ class Settings(BaseSettings):
     power_overcurrent_watts: float = 3600.0
     voltage_min: float = 110.0
     voltage_max: float = 130.0
+    breaker_trip_zero_watts_threshold: float = 5.0  # below this = "off/tripped"
+    breaker_trip_min_prior_watts: float = 100.0     # must have been drawing this to count
+    breaker_trip_window: int = 5                    # consecutive zero readings before alert
+
+    # ── Circuit Labels ──────────────────────────────────────────────────
+    circuit_labels_path: Path = Path("./circuit_labels.yml")
 
     # ── Health ──────────────────────────────────────────────────────────
     heartbeat_interval_sec: int = 30

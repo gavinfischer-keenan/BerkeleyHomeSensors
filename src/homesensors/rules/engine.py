@@ -95,6 +95,10 @@ class RulesEngine:
                     self._publisher.alert_leak(alert)
                 elif alert.sensor_type == "power":
                     self._publisher.alert_power(alert)
+                elif alert.sensor_type == "breaker":
+                    # Breaker trips route to home/alerts/breaker/{circuit_id}
+                    # BerkeleyAlarms picks up and announces circuit name via TTS.
+                    self._publisher.alert_breaker(alert)
                 else:
                     self._publisher.publish_alert(
                         f"home/alerts/{alert.sensor_type}/{alert.sensor_id}",

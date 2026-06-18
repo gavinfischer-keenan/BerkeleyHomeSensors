@@ -51,8 +51,8 @@ class Settings(BaseSettings):
     comfort_temp_min_f: float = 65.0
     comfort_temp_max_f: float = 78.0
     humidity_mold_threshold: float = 65.0
-    soil_dry_pct: float = 20.0
-    soil_over_water_pct: float = 80.0
+    soil_dry_pct: float = 25.0       # aligned with BerkeleyEnvironmental
+    soil_over_water_pct: float = 85.0  # aligned with BerkeleyEnvironmental
     soil_fire_season_pct: float = 15.0
     power_overcurrent_watts: float = 3600.0
     voltage_min: float = 110.0
